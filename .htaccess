@@ -1,0 +1,24 @@
+# Set custom error page for 404 errors
+ErrorDocument 404 /404.html
+
+# Hide .php extension
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)/?$ $1.php [L]
+
+# Allow photos to be opened in browser
+# Exclude images from this rule
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|gif)$ [NC]
+RewriteRule ^ - [L]
+
+# Rewrite index.php to OSR/
+#Alias /AFL /index.php
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php81” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
