@@ -45,14 +45,14 @@ $currentWeekData = $stmtCurrentWeek->fetch(PDO::FETCH_ASSOC);
               <div class="col-12">
                 <div class="card">
 
-                <div class="card-header d-flex justify-content-between bg-success">
+                <div class="card-header d-flex justify-content-between text-white bg-primary">
                     <div>
                         <a href="close?closeAccess"><button class="btn btn-danger"><i class="far fa-window-close"></i> Close</button></a>
                     </div>
                     <div>
-                        <h4>UNPROCESSED MATERIALS PRODUCTION</h4>
+                        <h4 class="text-white">UNPROCESSED MATERIALS PRODUCTION</h4>
                     </div>
-                    <div id="clock" style="font-size: 24px; color: black;"></div> 
+                    <div id="clock" style="font-size: 24px; color: white;"></div> 
                 </div>
                   <div class="card-body">
                   <ul class="nav nav-pills" id="myTab3" role="tablist">
@@ -251,9 +251,9 @@ $currentWeekData = $stmtCurrentWeek->fetch(PDO::FETCH_ASSOC);
                       </div>
                     </div>
                   </div>
-                  <div class="card-footer bg-green h-50 d-flex justify-content-between align-item-center">
+                  <div class="card-footer bg-primary text-white d-flex justify-content-between align-item-center">
                     <p>Copyright &copy; <?= date('Y') ?> UMP For Dr. Serge</p>
-                    <p>Powered by - <a href="http://www.spct.ezyro.com" target="_blank">QDEVS Inc.</a></p>
+                    <p>Powered by - <a href="http://www.spct.ezyro.com" target="_blank" class="text-white">QDEVS Inc.</a></p>
                   </div>
                 </div>
               </div>
