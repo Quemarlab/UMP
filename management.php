@@ -251,9 +251,9 @@ $currentWeekData = $stmtCurrentWeek->fetch(PDO::FETCH_ASSOC);
                       </div>
                     </div>
                   </div>
-                  <div class="card-footer bg-primary text-white d-flex justify-content-between align-item-center">
-                    <p>Copyright &copy; <?= date('Y') ?> UMP For Dr. Serge</p>
-                    <p>Powered by - <a href="http://www.spct.ezyro.com" target="_blank" class="text-white">QDEVS Inc.</a></p>
+                  <div class="card-footer bg-primary text-white d-flex justify-content-between" style="height: 50px; padding-top: 10px;">
+                    <p>Copyright &copy; <?= date('Y') ?> IMC</p>
+                    <p>Powered by - <a href="http://www.spct.ezyro.com" target="_blank" class="text-white">QDEVS</a></p>
                   </div>
                 </div>
               </div>
