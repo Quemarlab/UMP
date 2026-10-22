@@ -30,7 +30,9 @@ final class Env
 
     public static function get(string $key, ?string $default = null): ?string
     {
-        $v = self::$vars[$key] ?? null;
+        // A real environment variable wins over .env (standard for servers and containers).
+        $real = getenv($key);
+        $v = ($real !== false && $real !== '') ? $real : (self::$vars[$key] ?? null);
         return ($v === null || $v === '') ? $default : $v;
     }
 

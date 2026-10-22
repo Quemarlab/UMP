@@ -14,7 +14,7 @@ final class Backup
     }
 
     /** Tables owned by the website that shares this database: never reported as legacy, always backed up. */
-    private const SHARED_DB_TABLES = ['services', 'projects', 'posts', 'gallery_items', 'messages', 'subscribers'];
+    private const SHARED_DB_TABLES = ['services', 'projects', 'posts', 'gallery_items', 'messages', 'subscribers', 'newsletter_campaigns', 'newsletter_deliveries'];
 
     public static function allTables(): array
     {

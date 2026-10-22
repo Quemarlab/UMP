@@ -12,7 +12,7 @@
 
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const open = () => { root.hidden = false; document.body.classList.add('pal-open'); input.value = ''; build(''); input.focus(); };
-  const close = () => { root.hidden = true; document.body.classList.remove('pal-open'); };
+  const close = () => { root.hidden = true; document.body.classList.remove('pal-open'); input.blur(); };
 
   function render() {
     if (!items.length) { list.innerHTML = '<div class="pal-empty">No matches. Try a date (2025-02-27, 27/02/2025, today) or a GRV / GIV number.</div>'; return; }

@@ -43,8 +43,11 @@
     });
     document.getElementById('confirmOk').addEventListener('click', () => {
       if (!pending) return;
-      pending.dataset.confirmed = '1';
-      if (pending.requestSubmit) pending.requestSubmit(); else pending.submit();
+      const form = pending;
+      pending = null;
+      modal.hide(); // close the dialog right away: background (AJAX) actions never reload the page, so it would stay open
+      form.dataset.confirmed = '1';
+      if (form.requestSubmit) form.requestSubmit(); else form.submit();
     });
   }
 
