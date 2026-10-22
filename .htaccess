@@ -1,20 +1,51 @@
-# Set custom error page for 404 errors
-ErrorDocument 404 /404.html
+# UMP — Apache configuration
+Options -Indexes -MultiViews
+DirectoryIndex index.php
 
-# Hide .php extension
+<IfModule mod_rewrite.c>
 RewriteEngine On
+
+# Never serve internals or dotfiles (except .well-known)
+RewriteRule ^(app|database|storage|inc|bin)(/|$) - [F,L]
+RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+# Retired pages from the first version of this system (safe to delete from disk)
+RewriteRule ^(ajax|assets)(/|$) - [G,L]
+RewriteRule ^(auth|availability|close|management|config)(\.php)?$ - [G,L]
+
+# Hide the .php extension
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)/?$ $1.php [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
 
-# Allow photos to be opened in browser
-# Exclude images from this rule
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_URI} !\.(jpe?g|png|gif)$ [NC]
-RewriteRule ^ - [L]
+# Anything that does not exist renders the branded 404 page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ 404.php [L]
+</IfModule>
 
-# Rewrite index.php to OSR/
-#Alias /AFL /index.php
+ErrorDocument 403 "Forbidden"
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    # Uncomment once the system is served over HTTPS:
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php81” package as the default “PHP” programming language.

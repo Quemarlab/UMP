@@ -1,0 +1,19 @@
+# Secrets & local config
+.env
+
+# Runtime data
+storage/logs/*
+!storage/logs/.gitkeep
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.idea/
+
+# Database backups
+storage/backups/*
+!storage/backups/.gitkeep
+
+# Private document uploads
+storage/uploads/*
+!storage/uploads/.gitkeep

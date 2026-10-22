@@ -1,0 +1,5 @@
+/* Printable daily report */
+body { background: #f4f4f0; font-family: Inter, system-ui, sans-serif; }
+.sheet { max-width: 820px; margin: 2rem auto; background: #fff; padding: 2.2rem 2.4rem; border: 1px solid #e7e5dd; border-radius: .6rem; }
+.sign-line { border-top: 1px solid #333; padding-top: .35rem; margin: 0 1rem .35rem; min-height: 2.2rem; }
+@media print { body { background: #fff; } .sheet { margin: 0; border: 0; padding: 0; max-width: none; } .no-print { display: none !important; } }
